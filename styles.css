@@ -47,6 +47,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
 }
 
 .nav-brand h1 {
@@ -73,6 +74,88 @@ body {
 .nav-menu a:hover,
 .nav-menu a.active {
     color: var(--primary-color);
+}
+
+/* 社交栏 */
+.social-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    flex-shrink: 0;
+}
+
+.add-to-home-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+}
+
+.add-to-home-btn:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.share-center {
+    display: flex;
+    align-items: center;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.share-btn:hover {
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color);
+}
+
+.share-btn:active {
+    transform: scale(0.95);
+}
+
+.share-btn svg {
+    flex-shrink: 0;
 }
 
 /* 头部横幅 */

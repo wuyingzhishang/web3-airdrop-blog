@@ -43,3 +43,55 @@ document.querySelectorAll('.article-card, .article-item').forEach(card => {
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(card);
 });
+
+// 复制网址功能
+document.getElementById('shareSiteBtn')?.addEventListener('click', async function() {
+    try {
+        const url = window.location.href;
+        await navigator.clipboard.writeText(url);
+        
+        // 显示复制成功提示
+        const btn = this;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            已复制
+        `;
+        btn.style.color = 'var(--success-color)';
+        btn.style.borderColor = 'var(--success-color)';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.color = '';
+            btn.style.borderColor = '';
+        }, 2000);
+    } catch (err) {
+        console.error('复制失败:', err);
+        alert('复制失败，请手动复制网址');
+    }
+});
+
+// 添加到主屏幕功能
+document.getElementById('addToHomeBtn')?.addEventListener('click', function() {
+    // 检查是否支持 PWA 安装
+    if (window.deferredPrompt) {
+        window.deferredPrompt.prompt();
+        window.deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('用户接受了安装提示');
+            }
+            window.deferredPrompt = null;
+        });
+    } else {
+        // 如果不支持 PWA，显示提示信息
+        alert('在移动设备上，您可以通过浏览器菜单"添加到主屏幕"来安装此应用');
+    }
+});
+
+// PWA 安装提示
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    window.deferredPrompt = e;
+});
